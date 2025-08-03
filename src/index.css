@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+/* ========================= */
+/* THEME VARIABLES */
+/* ========================= */
+:root {
+  /* Global Background */
+  --background: 200 40% 97%; /* soft pastel blue */
+  --foreground: 240 10% 12%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 12%;
+
+  --border: 240 6% 88%;
+  --input: 240 6% 92%;
+  --ring: 215 100% 50%; /* navy blue glow */
+
+  /* Brand Accent Colors */
+  --primary: 197 95% 45%;       /* navy blue */
+  --primary-hover: 215 95% 40%; /* darker navy */
+
+  --secondary: 200 95% 60%;       /* light sky blue */
+  --secondary-hover: 200 95% 55%; /* slightly darker */
+
+  --accent: 170 80% 50%;       /* teal */
+  --accent-hover: 170 80% 45%;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px hsl(240 10% 12% / 0.04);
+  --shadow-md: 0 4px 16px hsl(240 10% 12% / 0.08);
+  --shadow-lg: 0 8px 32px hsl(240 10% 12% / 0.12);
+
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 230 20% 10%;  /* deep navy */
+  --foreground: 210 40% 98%;
+
+  --card: 230 20% 15%;
+  --card-foreground: 210 40% 98%;
+
+  --border: 230 15% 25%;
+  --input: 230 15% 20%;
+  --ring: 215 95% 60%;
+
+  --primary: 215 95% 60%;
+  --primary-hover: 215 95% 65%;
+
+  --secondary: 200 95% 70%;
+  --secondary-hover: 200 95% 75%;
+
+  --accent: 170 80% 60%;
+  --accent-hover: 170 80% 65%;
+
+  --shadow-sm: 0 2px 8px hsl(230 20% 5% / 0.3);
+  --shadow-md: 0 4px 16px hsl(230 20% 5% / 0.4);
+  --shadow-lg: 0 8px 32px hsl(230 20% 5% / 0.5);
+}
+
+/* ========================= */
+/* BASE LAYER */
+/* ========================= */
+@layer base {
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+}
+
+/* ========================= */
+/* COMPONENTS */
+/* ========================= */
+@layer components {
+  /* Buttons */
+  .btn {
+    @apply px-5 py-2.5 rounded-sm font-medium transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-hover hover:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white hover:bg-secondary-hover hover:shadow-md;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-white hover:bg-accent-hover hover:shadow-md;
+  }
+
+  .btn-soft {
+    @apply bg-white text-foreground border border-border;
+    @apply hover:bg-muted hover:text-primary hover:shadow-md;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+  }
+
+  /* Cards */
+  .card-hover {
+    @apply bg-card border border-border rounded-xl p-6 shadow-sm;
+    @apply hover:shadow-lg hover:-translate-y-1 transition-all duration-300;
+    @apply cursor-pointer;
+  }
+
+  /* Animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-bounce-gentle {
+    animation: bounce-gentle 2s ease-in-out infinite;
+  }
+}
+
+/* ========================= */
+/* KEYFRAMES */
+/* ========================= */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes bounce-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* ========================= */
+/* UTILITIES */
+/* ========================= */
+@layer utilities {
+  .bg-muted {
+    background-color: hsl(var(--input));
+  }
+
+  .text-muted {
+    color: hsl(var(--input));
+  }
+
+  .border-muted {
+    border-color: hsl(var(--border));
+  }
+
+  .shadow-sm {
+    box-shadow: var(--shadow-sm);
+  }
+
+  .shadow-md {
+    box-shadow: var(--shadow-md);
+  }
+
+  .shadow-lg {
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+/* ========================= */
+/* FORMS */
+/* ========================= */
+@layer forms {
+  input, textarea, select {
+    @apply bg-input border border-border rounded-lg p-3 text-sm transition-shadow duration-200;
+    @apply focus:ring-2 focus:ring-ring focus:border-transparent;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    @apply shadow-md;
+  }
+
+  input[type="checkbox"], input[type="radio"] {
+    @apply rounded-full border border-border focus:ring-2 focus:ring-ring;
+  }
+}
+}
