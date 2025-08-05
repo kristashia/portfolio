@@ -1,20 +1,31 @@
+import { useEffect, useRef } from "react";
 import { X, ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogHeader, DialogClose } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogClose,
+} from "@/components/ui/dialog";
 
 export interface Project {
   id: string;
   title: string;
   description: string;
   fullDescription: string;
-  image: string;
+  image?: string;
+  videoUrl?: string;
   technologies: string[];
   liveUrl?: string;
   githubUrl?: string;
-  challenges: string[];
-  role: string;
-  type: "UI/UX Design" | "Frontend Dev" | "Graphic Design" | "Game Design";
+  challenges?: string[];
+  role?: string;
+  type:
+    | "UI/UX Design"
+    | "Full Stack Development"
+    | "Graphic Design"
+    | "Game Development";
 }
 
 interface ProjectModalProps {
@@ -23,12 +34,53 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
+// Helper to extract YouTube video ID robustly
+function getYouTubeVideoId(url: string) {
+  const regExp =
+    /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|watch\?.+&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+  return match && match[2].length === 11 ? match[2] : null;
+}
+
+// Builds the embed URL with autoplay & mute params
+function getEmbedUrl(url: string) {
+  if (url.includes("youtube.com") || url.includes("youtu.be")) {
+    const videoId = getYouTubeVideoId(url);
+    if (!videoId) return url;
+    return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&rel=0`;
+  }
+  if (url.includes("vimeo.com")) {
+    const videoId = url.split("/").pop();
+    return `https://player.vimeo.com/video/${videoId}?autoplay=1&muted=1`;
+  }
+  return url;
+}
+
 export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    if (!isOpen && videoRef.current) {
+      videoRef.current.pause();
+    }
+  }, [isOpen]);
+
   if (!project) return null;
 
+  const isEmbedVideo =
+    project.videoUrl &&
+    (project.videoUrl.includes("youtube.com") ||
+      project.videoUrl.includes("youtu.be") ||
+      project.videoUrl.includes("vimeo.com"));
+
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+    <Dialog
+      open={isOpen}
+      onOpenChange={(open) => {
+        if (!open) onClose();
+      }}
+    >
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6">
         <DialogHeader className="space-y-0">
           <div className="flex items-start justify-between">
             <div className="space-y-2">
@@ -46,14 +98,40 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
         </DialogHeader>
 
         <div className="space-y-6">
-          {/* Project Image */}
-          <div className="relative rounded-xl overflow-hidden bg-muted">
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-64 object-cover"
-            />
-          </div>
+          {/* Media: Video (autoplay) or Image */}
+          {project.videoUrl ? (
+            <div className="relative rounded-xl overflow-hidden bg-muted max-h-[60vh]">
+              {isEmbedVideo ? (
+                <iframe
+                  src={getEmbedUrl(project.videoUrl)}
+                  title={project.title}
+                  className="w-full h-[360px] sm:h-[480px] md:h-[60vh] rounded-xl"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  // For autoplay to work on some browsers:
+                  // - muted is handled by URL param in embed src
+                />
+              ) : (
+                <video
+                  ref={videoRef}
+                  src={project.videoUrl}
+                  controls
+                  autoPlay
+                  muted
+                  className="w-full h-auto max-h-[60vh] object-contain"
+                />
+              )}
+            </div>
+          ) : project.image ? (
+            <div className="relative rounded-xl overflow-hidden bg-muted max-h-[60vh]">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-auto max-h-[60vh] object-contain"
+              />
+            </div>
+          ) : null}
 
           {/* Description */}
           <div>
@@ -63,19 +141,26 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
             </p>
           </div>
 
-          {/* Role & Contribution */}
-          <div>
-            <h3 className="text-xl font-semibold mb-3">My Role</h3>
-            <p className="text-muted-foreground">{project.role}</p>
-          </div>
-
-          {/* Challenges & Lessons */}
-          {project.challenges.length > 0 && (
+          {/* Role */}
+          {project.role && (
             <div>
-              <h3 className="text-xl font-semibold mb-3">Challenges & Lessons</h3>
+              <h3 className="text-xl font-semibold mb-3">My Role</h3>
+              <p className="text-muted-foreground">{project.role}</p>
+            </div>
+          )}
+
+          {/* Challenges */}
+          {project.challenges && project.challenges.length > 0 && (
+            <div>
+              <h3 className="text-xl font-semibold mb-3">
+                Challenges & Lessons
+              </h3>
               <ul className="space-y-2">
                 {project.challenges.map((challenge, index) => (
-                  <li key={index} className="text-muted-foreground flex items-start">
+                  <li
+                    key={index}
+                    className="text-muted-foreground flex items-start"
+                  >
                     <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
                     {challenge}
                   </li>

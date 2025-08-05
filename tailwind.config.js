@@ -19,6 +19,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+        century: ['"Century Gothic"', 'Futura', 'Trebuchet MS', 'sans-serif'],
 				sans: ['Inter', 'system-ui', 'sans-serif'],
 				mono: ['JetBrains Mono', 'monospace'],
 			},
@@ -82,7 +84,7 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
-			},		  
+			},
 			keyframes: {
 				'accordion-down': {
 					from: {

@@ -1,30 +1,11 @@
-import { ArrowRight, Code, Palette, Zap, Github, Mail, Linkedin } from "lucide-react";
-import { Button } from "@/components/ui/button";
+"use client";
+
+import { CloudDrizzle, Code, Palette, Zap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Link } from "react-router-dom";
-import heroImage from "@/assets/hero-bg.jpg";
-import project1 from "@/assets/project1.jpg"; // Replace images as needed
-import project2 from "@/assets/project2.jpg";
+import { TypeAnimation } from "react-type-animation";
+import { motion } from "framer-motion";
 
 export default function HomePage() {
-  const featuredProjects = [
-    {
-      title: "My Wellness Tracker",
-      description:
-        "A wellness tracking app to log workouts with sets, reps, and supersets, track session times, water intake, calories in/out, weight, protein and macro goals and much more.",
-      image: project1,
-      technologies: ["React", "Node.js", "MongoDB"],
-    },
-    {
-      title: "TripMate",
-      description:
-        "Travel web app that helps you plan upcoming trips, journal your experience, upload photos, share with friends, and budget.",
-      image: project2,
-      technologies: ["Vue.js", "Firebase", "PWA"],
-    },
-  ];
-
   const skills = [
     {
       icon: Code,
@@ -32,9 +13,9 @@ export default function HomePage() {
       description: "Building responsive and interactive user interfaces",
     },
     {
-      icon: Code,
+      icon: CloudDrizzle,
       title: "Full Stack Dev",
-      description: "Developing scalable web applications end-to-end",
+      description: "Developing scalable web applications end-to-end with modern technologies",
     },
     {
       icon: Palette,
@@ -48,171 +29,117 @@ export default function HomePage() {
     },
   ];
 
+  const techStack = [
+    "JavaScript", "TypeScript", "Python", "Java", "C#", "C++", "C", "Ruby",
+    "SQL", "HTML/CSS", "JSON", "React", "Next.js", "React Native", "Node.js",
+    "Express", "Sequelize", "Bootstrap", "Ruby on Rails", "Unity (2D/3D)",
+    "Tailwind CSS", "Jest", "PyTest", "JUnit","PostgreSQL","AWS",
+    "Azure", "Vercel", "Netlify", "Firebase", "CI/CD with GitHub Actions",
+    "Git", "GitHub","Docker", "Jira", "Postman", "Power BI", "Power Automate", "Figma",
+    "Adobe Creative Suite", "InVision", "Axure RP", "Marvel", "Sketch"
+  ];
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
         <div className="absolute inset-0">
           <img
-            src={heroImage}
+            src={"/assets/hero-background.jpg"}
             alt="Hero background"
-            className="w-full h-full object-cover opacity-10"
+            className="w-full h-full object-cover opacity-0"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20"></div>
         </div>
 
-        {/* Content */}
         <div className="relative z-10 container mx-auto px-6 text-center">
-          <div className="max-w-4xl mx-auto space-y-8">
-            <div className="space-y-4 animate-fade-up">
-              <h1 className="text-5xl md:text-7xl font-bold">
-                Hi, I'm{" "}
-                <span className="text-gradient">Kristashia</span>{" "}
-                <span className="inline-block animate-bounce-gentle">👋</span>
-              </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-                A multifaceted engineer exploring the overlap of front-end, UI/UX,
-                full-stack development, AI, and immersive tech like AR/VR.
-              </p>
-            </div>
+          <div className="max-w-4xl mx-auto space-y-6">
+            {/* Headline with typing + fade-in */}
+            <motion.h1
+              className="font-bold text-[3.5rem] md:text-7xl mb-4"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            >
+              <TypeAnimation
+                sequence={[
+                  "Hi, I'm Kristashia",
+                  2000,
+                  "",
+                  500,
+                  "Welcome to my portfolio!",
+                  3000,
+                ]}
+                wrapper="span"
+                cursor={true}
+                repeat={Infinity}
+              />
+            </motion.h1>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up" style={{ animationDelay: "200ms" }}>
-              <Button asChild size="lg" className="btn-hero text-lg px-8 py-4">
-                <Link to="/projects">
-                  View My Projects
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-
-              {/* Get In Touch Icons */}
-              <div className="flex justify-center items-center">
-  <a
-    href="https://github.com/kristashia"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Github"
-    className="btn-ghost p-3 rounded-lg hover:bg-primary hover:text-white transition mr-3 last:mr-0"
-  >
-    <Github className="h-6 w-6" />
-  </a>
-
-  <a
-    href="mailto:your.email@kristashia.com"
-    aria-label="Email"
-    className="btn-ghost p-3 rounded-lg hover:bg-secondary hover:text-white transition mr-3 last:mr-0"
-  >
-    <Mail className="h-6 w-6" />
-  </a>
-
-  <a
-    href="https://linkedin.com/in/krtistashia"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="LinkedIn"
-    className="btn-ghost p-3 rounded-lg hover:bg-accent hover:text-white transition"
-  >
-    <Linkedin className="h-6 w-6" />
-  </a>
-</div>
-
-            </div>
           </div>
-        </div>
-
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 opacity-60 animate-float">
-          <div className="w-4 h-4 bg-primary rounded-full"></div>
-        </div>
-        <div className="absolute top-40 right-16 opacity-40 animate-float" style={{ animationDelay: "1s" }}>
-          <div className="w-6 h-6 bg-secondary rounded-full"></div>
-        </div>
-        <div className="absolute bottom-32 left-20 opacity-50 animate-float" style={{ animationDelay: "2s" }}>
-          <div className="w-3 h-3 bg-accent rounded-full"></div>
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section className="py-20 bg-surface">
+      {/* What I Do Section */}
+      <section className="py-16 bg-surface">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">What I Do</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              I specialize in creating end-to-end digital solutions that combine beautiful design with robust functionality
+              I specialize in creating end-to-end digital solutions that combine
+              beautiful design with robust functionality.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {skills.map((skill, index) => (
-              <Card
+              <motion.div
                 key={skill.title}
-                className="card-hover animate-fade-up"
-                style={{ animationDelay: `${index * 100}ms` }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
               >
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <skill.icon className="h-8 w-8 text-primary-foreground" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">{skill.title}</h3>
-                  <p className="text-muted-foreground">{skill.description}</p>
-                </CardContent>
-              </Card>
+                <Card className="card-hover w-[18rem] mx-auto">
+                  <CardContent className="p-6 text-center">
+                    <div className="w-19 h-16 bg-gradient-to-tr from-pink-300 via-pink-400 to-yellow-300 rounded-l flex items-center justify-center mx-auto mb-7 shadow-lg">
+                      <skill.icon className="h-8 w-8 text-white drop-shadow-md" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3">{skill.title}</h3>
+                    <p className="text-muted-foreground">{skill.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Projects Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Here are some of my recent works that showcase my skills and passion for creating amazing digital experiences
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
-            {featuredProjects.map((project, index) => (
-              <Card
-                key={project.title}
-                className="card-hover animate-fade-up group"
-                style={{ animationDelay: `${index * 200}ms` }}
+      {/* Tech Stack Section */}
+      <section className="py-14 bg-background">
+        <div className="container mx-auto px-6 text-center max-w-4xl">
+          <h2 className="text-4xl font-bold mb-8">Tech Stack</h2>
+          <motion.div
+            className="flex flex-wrap justify-center gap-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 1 }}
+          >
+            {techStack.map((tech, index) => (
+              <motion.span
+                key={tech}
+                className="inline-flex items-center px-4 py-2 rounded-full 
+                  bg-gradient-to-r from-pink-300 via-pink-400 to-yellow-300 
+                  text-white font-semibold text-sm cursor-default select-none
+                  shadow-[0_0_12px_rgba(255,192,203,0.8)]
+                  animate-pulse"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.05, duration: 0.4 }}
               >
-                <CardContent className="p-0">
-                  <div className="relative overflow-hidden rounded-t-2xl">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-4">{project.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech) => (
-                        <Badge key={tech} variant="outline" className="btn-skill">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                {tech}
+              </motion.span>
             ))}
-          </div>
-
-          <div className="text-center">
-            <Button asChild size="lg" className="btn-hero">
-              <Link to="/projects">
-                View All Projects
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>
