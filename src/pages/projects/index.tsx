@@ -42,7 +42,7 @@ export default function ProjectsPage() {
       image: project1,
       videoUrl: "https://youtu.be/YHcQ5VNT93o",
       technologies: ["Firebase", "JSON", "React", "HTML", "Tailwind CSS", "Node.js"],
-      liveUrl: "https://tripmate-demo.vercel.app",
+      liveUrl: "https://tripmate-jade.vercel.app/",
       githubUrl: "https://github.com/kristashia/travel-app",
       type: "Full Stack Development"
     },
@@ -54,7 +54,6 @@ export default function ProjectsPage() {
         "A pizza ordering system from admin's point of view. Admin can view, edit and delete customers and orders.",
       image: project3,
       technologies: ["Node.js", "Express.js", "Bootstrap"],
-      liveUrl: "https://pizza-ordering-system-admin.vercel.app",
       videoUrl: "https://youtu.be/j1uJ346GPJ0",
       githubUrl: "https://github.com/kristashia/pizza-ordering-system",
       type: "Full Stack Development",
