@@ -1,7 +1,8 @@
 import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
 import { SpeedInsights } from '@vercel/speed-insights/next';
- 
+import { Analytics } from '@vercel/analytics/next';
+
 export default function RootLayout({
   children,
 }: {
@@ -13,24 +14,14 @@ export default function RootLayout({
         <title>Next.js</title>
       </head>
       <body>
-        {children}
+        <div className="min-h-screen flex flex-col">
+          <Navigation />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </div>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
-  );
-}
-interface LayoutProps {
-  children: React.ReactNode;
-}
-
-export function Layout({ children }: LayoutProps) {
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Navigation />
-      <main className="flex-1">
-        {children}
-      </main>
-      <Footer />
-    </div>
   );
 }
