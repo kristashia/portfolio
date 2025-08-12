@@ -10,6 +10,26 @@ import ProjectsPage from "./pages/projects";
 import ResumePage from "./pages/ResumePage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from '@vercel/speed-insights/next';
+ 
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <head>
+        <title>Next.js</title>
+      </head>
+      <body>
+        {children}
+        <SpeedInsights />
+      </body>
+    </html>
+  );
+}
 
 const queryClient = new QueryClient();
 
