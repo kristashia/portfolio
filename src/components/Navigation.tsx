@@ -48,12 +48,14 @@ export function Navigation() {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link
-            to="/"
-            className="text-2xl font-bold text-gradient hover:scale-105 transition-transform glow-text relative"
-          >
-            Kristashia
-          </Link>
+          <Link to="/">
+  <img
+    src="/kristashia_pink_logo.png" 
+    alt="Kristashia"
+    className="h-20 w-auto hover:scale-105 transition-transform"
+  />
+</Link>
+
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8 ml-auto">
