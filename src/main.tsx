@@ -3,8 +3,8 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
-import { inject } from "@vercel/analytics";               // ✅ Web Analytics
-import { SpeedInsights } from "@vercel/speed-insights/react"; // ✅ Speed Insights
+import { inject } from "@vercel/analytics";               // Web Analytics
+import { SpeedInsights } from "@vercel/speed-insights/react"; // Speed Insights
 
 // Run Vercel Analytics once
 inject();

@@ -5,40 +5,100 @@ import { Card, CardContent } from "@/components/ui/card";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 
+const skills = [
+  {
+    icon: Code,
+    title: "Front End Engineering",
+    description: "Building responsive and interactive user interfaces",
+  },
+  {
+    icon: CloudDrizzle,
+    title: "Full Stack Dev",
+    description: "Developing scalable applications end-to-end with modern technologies",
+  },
+  {
+    icon: Palette,
+    title: "UI/UX Design",
+    description: "Designing intuitive and engaging user experiences",
+  },
+  {
+    icon: Zap,
+    title: "Product Design",
+    description: "Crafting thoughtful product solutions that solve real problems",
+  },
+];
+
+const techCategories = {
+  "Languages & Frameworks": [
+    "JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Express",
+    "Python", "Go", "Vue.js", "Angular", "HTML5", "CSS3", "Tailwind CSS",
+    "Java", "C#", "C++", "C", "Ruby", "Ruby on Rails", "Flutter", "Unity (2D/3D)"
+  ],
+  "Databases & APIs": [
+    "PostgreSQL", "MySQL", "MongoDB", "NoSQL", "GraphQL", "RESTful APIs",
+    "Sequelize", "SQL", "JSON", "React Native", "Bootstrap"
+  ],
+  "Testing": [
+    "Jest", "PyTest", "JUnit"
+  ],
+  "DevOps & Tools": [
+    "Git", "GitHub", "Docker", "Kubernetes", "CI/CD with GitHub Actions", "CI/CD",
+    "AWS", "Azure", "Firebase", "Supabase", "Terrafoam", "Vercel", "Netlify",
+    "Jira", "Postman", "Power BI", "Power Automate"
+  ],
+  "Design & Prototyping": [
+    "Figma", "Sketch", "InVision", "Axure RP", "Marvel", "Adobe Creative Suite"
+  ],
+  "AI Dev Tools": [
+    "LangChain", "Claude", "OpenAI", "GitHub Copilot", "Cursor", "Windsurf"
+  ]
+};
+
+function TechStackSection() {
+  const sortedCategories = Object.entries(techCategories).sort(
+    ([, techsA], [, techsB]) => techsA.length - techsB.length
+  );
+
+  return (
+    <section className="py-14 bg-background">
+      <div className="container mx-auto px-6 max-w-7xl">
+        <h2 className="text-4xl font-bold mb-10 text-center">Tech Stack</h2>
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 1 }}
+        >
+          {sortedCategories.map(([category, techs], i) => (
+            <motion.div
+              key={category}
+              className="card-hover flex flex-col border border-gray-300 rounded-md px-6 py-5 w-full min-h-[200px] max-h-[300px] overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.2, duration: 0.6 }}
+            >
+              <h3 className="text-xl font-semibold mb-4 text-center whitespace-nowrap overflow-hidden text-ellipsis">
+                {category}
+              </h3>
+              <div className="flex flex-wrap gap-2 justify-center overflow-y-auto pr-1">
+                {techs.map((tech) => (
+                  <span
+                    key={tech}
+                    className="text-sm px-3 py-1 border border-gray-300 rounded cursor-default select-none whitespace-nowrap"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 export default function HomePage() {
-  const skills = [
-    {
-      icon: Code,
-      title: "Front End Engineering",
-      description: "Building responsive and interactive user interfaces",
-    },
-    {
-      icon: CloudDrizzle,
-      title: "Full Stack Dev",
-      description: "Developing scalable web applications end-to-end with modern technologies",
-    },
-    {
-      icon: Palette,
-      title: "UI/UX Design",
-      description: "Designing intuitive and engaging user experiences",
-    },
-    {
-      icon: Zap,
-      title: "Product Design",
-      description: "Crafting thoughtful product solutions that solve real problems",
-    },
-  ];
-
-  const techStack = [
-    "JavaScript", "TypeScript", "Python", "Java", "C#", "C++", "C", "Ruby",
-    "SQL", "HTML/CSS", "JSON", "React", "Next.js", "React Native", "Node.js",
-    "Express", "Sequelize", "Bootstrap", "Ruby on Rails", "Unity (2D/3D)",
-    "Tailwind CSS", "Jest", "PyTest", "JUnit","PostgreSQL","AWS",
-    "Azure", "Vercel", "Netlify", "Firebase", "CI/CD with GitHub Actions",
-    "Git", "GitHub","Docker", "Jira", "Postman", "Power BI", "Power Automate", "Figma",
-    "Adobe Creative Suite", "InVision", "Axure RP", "Marvel", "Sketch"
-  ];
-
   return (
     <div className="min-h-screen flex flex-col">
       {/* Hero Section */}
@@ -54,7 +114,6 @@ export default function HomePage() {
 
         <div className="relative z-10 container mx-auto px-6 text-center">
           <div className="max-w-4xl mx-auto space-y-6">
-            {/* Headline with typing + fade-in */}
             <motion.h1
               className="font-bold text-[3.5rem] md:text-7xl mb-4"
               initial={{ opacity: 0, y: 40 }}
@@ -75,7 +134,6 @@ export default function HomePage() {
                 repeat={Infinity}
               />
             </motion.h1>
-
           </div>
         </div>
       </section>
@@ -115,33 +173,7 @@ export default function HomePage() {
       </section>
 
       {/* Tech Stack Section */}
-      <section className="py-14 bg-background">
-        <div className="container mx-auto px-6 text-center max-w-4xl">
-          <h2 className="text-4xl font-bold mb-8">Tech Stack</h2>
-          <motion.div
-            className="flex flex-wrap justify-center gap-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
-          >
-            {techStack.map((tech, index) => (
-              <motion.span
-                key={tech}
-                className="inline-flex items-center px-4 py-2 rounded-full 
-                  bg-gradient-to-r from-pink-300 via-pink-400 to-yellow-300 
-                  text-white font-semibold text-sm cursor-default select-none
-                  shadow-[0_0_12px_rgba(255,192,203,0.8)]
-                  animate-pulse"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.05, duration: 0.4 }}
-              >
-                {tech}
-              </motion.span>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+      <TechStackSection />
     </div>
   );
 }

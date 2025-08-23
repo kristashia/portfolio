@@ -79,7 +79,7 @@ export default function ContactPage() {
 
       toast({
         title: "Message sent successfully!",
-        description: "I'll get back to you soon.",
+        description: "I'll get back to you as soon as possible.",
       });
     } catch (error: any) {
       toast({
@@ -117,7 +117,7 @@ export default function ContactPage() {
                     Message Sent Successfully!
                   </h3>
                   <p className="text-muted-foreground mb-4">
-                    Thank you for reaching out. I'll get back to you soon.
+                    Thank you for reaching out. I'll get back to you as soon as possible.
                   </p>
                   <Button
                     onClick={() => setIsSubmitted(false)}
@@ -139,7 +139,7 @@ export default function ContactPage() {
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleInputChange}
-                        placeholder="Your first name"
+                        placeholder="First name"
                         required
                       />
                     </div>
@@ -152,7 +152,7 @@ export default function ContactPage() {
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleInputChange}
-                        placeholder="Your last name"
+                        placeholder="Last name"
                         required
                       />
                     </div>
@@ -167,7 +167,7 @@ export default function ContactPage() {
                       name="company"
                       value={formData.company}
                       onChange={handleInputChange}
-                      placeholder="Your company name"
+                      placeholder="Your company's name"
                       required
                     />
                   </div>
@@ -182,7 +182,7 @@ export default function ContactPage() {
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      placeholder="Your email address"
+                      placeholder="Email address"
                       required
                     />
                   </div>
