@@ -29,21 +29,20 @@ const skills = [
 ];
 
 const techCategories = {
-  "Languages & Frameworks": [
+ "Languages & Frameworks": [
     "JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Express",
     "Python", "Go", "Vue.js", "Angular", "HTML5", "CSS3", "Tailwind CSS",
-    "Java", "C#", "C++", "C", "Ruby", "Ruby on Rails", "Flutter", "Unity (2D/3D)"
+    "Java", "C#", "C++", "C", "Ruby", "Ruby on Rails", "Flutter", "React Native", "Bootstrap", "Sequelize"
   ],
   "Databases & APIs": [
-    "PostgreSQL", "MySQL", "MongoDB", "NoSQL", "GraphQL", "RESTful APIs",
-    "Sequelize", "SQL", "JSON", "React Native", "Bootstrap"
+    "PostgreSQL", "MySQL", "MongoDB", "NoSQL", "GraphQL", "RESTful APIs", "SQL"
   ],
   "Testing": [
     "Jest", "PyTest", "JUnit"
   ],
   "DevOps & Tools": [
-    "Git", "GitHub", "Docker", "Kubernetes", "CI/CD with GitHub Actions", "CI/CD",
-    "AWS", "Azure", "Firebase", "Supabase", "Terrafoam", "Vercel", "Netlify",
+    "Git", "GitHub", "Docker", "Kubernetes", "CI/CD",
+    "AWS", "Azure", "Firebase", "Supabase", "Terraform", "Vercel", "Netlify",
     "Jira", "Postman", "Power BI", "Power Automate"
   ],
   "Design & Prototyping": [
