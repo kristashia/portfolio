@@ -29,7 +29,7 @@ export default function AboutPage() {
               <p className="text-lg text-muted-foreground leading-relaxed">
               My journey into tech started where many do: creating things for fun. 
               I began by designing flyers, which led me down the rabbit hole of coding. 
-              There, I made a powerful discovery—I didn't have to choose between design 
+              There, I made a powerful discovery, I didn't have to choose between design 
               and development. I was captivated by both. This dual passion defines my approach today. 
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
