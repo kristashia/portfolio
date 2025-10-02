@@ -1,37 +1,41 @@
 "use client";
 
-import { CloudDrizzle, Code, Palette, Zap } from "lucide-react";
+import { CloudDrizzle, Code, Palette, User, Zap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 
 const skills = [
   {
-    icon: Code,
-    title: "Front End Engineering",
-    description: "Building responsive and interactive user interfaces",
-  },
-  {
-    icon: CloudDrizzle,
-    title: "Full Stack Dev",
-    description: "Developing scalable applications end-to-end with modern technologies",
+    icon: User,
+    title: "UX Research & Strategy",
+    description: "Conducting user research and translating insights into actionable product strategy",
   },
   {
     icon: Palette,
     title: "UI/UX Design",
-    description: "Designing intuitive and engaging user experiences",
+    description: "Designing intuitive interfaces from wireframes to high-fidelity prototypes",
   },
   {
     icon: Zap,
-    title: "Product Design",
-    description: "Crafting thoughtful product solutions that solve real problems",
+    title: "Product Management",
+    description: "Leading cross-functional teams from concept to launch using Agile methodologies",
   },
+  {
+    icon: Code,
+    title: "Technical Prototyping",
+    description: "Building functional prototypes and collaborating seamlessly with engineering teams",
+  }
 ];
 
 const techCategories = {
+  "Design & Prototyping": [
+    "Figma", "Sketch", "InVision", "Axure RP", "Marvel", "Adobe Creative Suite", "Miro"
+  ],
+
  "Languages & Frameworks": [
-    "JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Express",
-    "Python", "Go", "Vue.js", "Angular", "HTML5", "CSS3", "Tailwind CSS",
+    "JavaScript", "TypeScript", "React", "HTML5", "CSS3", "Tailwind CSS",
+    "Next.js", "Node.js", "Express", "Python", "Go", "Vue.js", "Angular", 
     "Java", "C#", "C++", "C", "Ruby", "Ruby on Rails", "Flutter", "React Native", "Bootstrap", "Sequelize"
   ],
   "Databases & APIs": [
@@ -45,9 +49,7 @@ const techCategories = {
     "AWS", "Azure", "Firebase", "Supabase", "Terraform", "Vercel", "Netlify",
     "Jira", "Postman", "Power BI", "Power Automate"
   ],
-  "Design & Prototyping": [
-    "Figma", "Sketch", "InVision", "Axure RP", "Marvel", "Adobe Creative Suite"
-  ],
+  
   "AI Dev Tools": [
     "LangChain", "Claude", "OpenAI", "GitHub Copilot", "Cursor", "Windsurf"
   ]
@@ -143,8 +145,8 @@ export default function HomePage() {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">What I Do</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              I specialize in creating end-to-end digital solutions that combine
-              beautiful design with robust functionality.
+            I bridge user experience design and technical execution—transforming complex problems 
+            into intuitive interfaces and leading cross-functional teams to bring them to life.
             </p>
           </div>
 
@@ -156,15 +158,19 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
               >
-                <Card className="card-hover w-[18rem] mx-auto">
-                  <CardContent className="p-6 text-center">
-                    <div className="w-19 h-16 bg-gradient-to-tr from-pink-300 via-pink-400 to-yellow-300 rounded-l flex items-center justify-center mx-auto mb-7 shadow-lg">
-                      <skill.icon className="h-8 w-8 text-white drop-shadow-md" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-3">{skill.title}</h3>
-                    <p className="text-muted-foreground">{skill.description}</p>
-                  </CardContent>
-                </Card>
+               <Card className="card-hover w-[18rem] mx-auto h-full">
+  <CardContent className="p-6 text-center flex flex-col h-[280px]"> {/* Fixed height */}
+    <div className="w-19 h-16 bg-gradient-to-tr from-pink-300 via-pink-400 to-yellow-300 rounded-l flex items-center justify-center mx-auto mb-7 shadow-lg">
+      <skill.icon className="h-8 w-8 text-white drop-shadow-md" />
+    </div>
+    <div className="flex-grow flex flex-col justify-between"> {/* This ensures content spacing */}
+      <div>
+        <h3 className="text-xl font-semibold mb-3">{skill.title}</h3>
+        <p className="text-muted-foreground">{skill.description}</p>
+      </div>
+    </div>
+  </CardContent>
+</Card>
               </motion.div>
             ))}
           </div>

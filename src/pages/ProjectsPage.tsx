@@ -8,14 +8,8 @@ import { projects } from "@/data/projects";
 export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [filterType, setFilterType] = useState<string>("All");
 
-  const projectTypes = ["All", "Full Stack Development", "UI/UX Design"];
-
-  const filteredProjects =
-    filterType === "All"
-      ? projects
-      : projects.filter((project) => project.type === filterType);
+  const projectTypes = ["Full Stack Development", "UI/UX Design"];
 
   const handleProjectClick = (project: Project) => {
     setSelectedProject(project);
