@@ -79,5 +79,36 @@ export const projects: Project[] = [
       technologies: ["Figma"],
       type: "UI/UX Design",
     },
-    
-  ];
+
+    {  
+      id:"7"
+      title: "Slit Lamp VR Simulation",
+      description: "A VR simulation for practicing eye examination techniques using a virtual slit lamp.",
+      fullDescription: "The Virtual Interactive Slit Lamp is a cutting-edge VR simulation designed to help medical students practice essential eye examination techniques.",
+      image: project7,
+      technologies: ["Figma", "Unity", "C#"],
+      type: "UI/UX Design",
+    },
+
+    {
+    id: "8",
+      title: "Mobile Personal Finance App",
+      description: "A mobile app to track expenses, set budgets, and visualize financial goals.",
+      fullDescription:
+        "This personal finance app allows users to track daily expenses, categorize spending, set budgets, and visualize financial goals with charts and reports. Features include bill reminders, savings goals, and secure data storage.",
+      image: project8,
+      technologies: ["Figma"],
+      type: "UI/UX Design",
+    },
+
+{
+  id: "9",
+  title: "E-commerce Website",
+  description: "A full-featured e-commerce platform with product listings, shopping cart, and payment integration.",
+  fullDescription:
+    "This e-commerce website offers a seamless shopping experience with product browsing, detailed product pages, a shopping cart, and secure payment processing. Features include user accounts, order tracking, and admin management for products and orders.",
+  image: project9,
+  technologies: ["Figma"],
+  type: "UI/UX Design", 
+}
+];
